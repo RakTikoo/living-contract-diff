@@ -1,0 +1,33 @@
+openapi: 3.0.3
+info:
+  title: Ref
+  version: '1'
+paths:
+  /users/{id}:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    Base:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          type: integer
+    User:
+      allOf:
+      - $ref: '#/components/schemas/Base'
+      - type: object
+        required:
+        - name
+        properties:
+          name:
+            type: string
+          friend:
+            $ref: '#/components/schemas/User'

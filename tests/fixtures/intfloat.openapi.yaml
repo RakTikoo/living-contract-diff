@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  title: Fixture
+  version: '1'
+paths:
+  /metrics/{id}:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  score:
+                    type: number

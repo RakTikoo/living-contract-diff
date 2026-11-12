@@ -1,0 +1,35 @@
+{
+ "openapi": "3.0.3",
+ "info": {
+  "title": "Fixture",
+  "version": "1"
+ },
+ "paths": {
+  "/users/{id}": {
+   "get": {
+    "responses": {
+     "200": {
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "properties": {
+          "id": {
+           "type": "integer"
+          },
+          "name": {
+           "type": "string"
+          },
+          "coupon": {
+           "type": "string"
+          }
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

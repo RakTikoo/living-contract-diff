@@ -1,0 +1,45 @@
+# Hand-written / generator-style YAML twin of clean.openapi.json.
+# Exercises, in one realistic spec: block scalars, flow style, quoted
+# keys, compact sequences of mappings, comments, URLs in strings.
+openapi: 3.0.3
+info:
+  title: Fixture
+  version: '1'
+  description: |
+    A fixture API.
+    Second line of the description: with a colon and a # hash.
+  contact:
+    url: https://example.com/docs#api
+tags:
+  - name: users
+    description: >
+      Everything about
+      users and their {profiles}
+paths:
+  /users/{id}:
+    get:
+      summary: Get a user
+      responses:
+        '200':  # quoted status key
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, name]
+                properties:
+                  id: {type: integer}
+                  name: {type: string}
+                  email:
+                    type: string
+                    format: email
+                  address:
+                    type: object
+                    required:
+                      - city
+                    properties:
+                      city: {type: string}
+                      zip: {type: string}
+                  tags:
+                    type: array
+                    items: {type: string}
