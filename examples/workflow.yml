@@ -1,0 +1,25 @@
+# Example workflow: fail CI on new breaking contract drift.
+# Copy into .github/workflows/ of the API repo, commit a baseline
+# (python3 -m lcdiff observe --har traffic.har --out contract/baseline.json)
+# and your OpenAPI spec (JSON or YAML). No marketplace action required.
+name: contract-drift
+on: [pull_request]
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Get Living Contract Diff
+        run: git clone --depth 1 https://github.com/RakTikoo/living-contract-diff /tmp/lcd
+      - name: Diff observed contract vs spec
+        run: |
+          set +e
+          cd /tmp/lcd
+          python3 -m lcdiff diff --baseline "$GITHUB_WORKSPACE/contract/baseline.json" \
+            --spec "$GITHUB_WORKSPACE/openapi.json" --format text | tee /tmp/lcd-report.txt
+          code=${PIPESTATUS[0]}
+          { echo "## Living Contract Diff"; echo '```'; cat /tmp/lcd-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          exit $code   # 1 = breaking drift, 2 = unreadable input, 0 = clean
