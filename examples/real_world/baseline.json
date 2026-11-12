@@ -1,0 +1,260 @@
+{
+  "version": 2,
+  "tool": "living-contract-diff",
+  "note": "Statistics only: counts, types, format classes, and enum candidates for low-cardinality fields (<=20 distinct, strings <=64 chars, sensitive-named fields never stored). 2xx responses are grouped by exact status code.",
+  "endpoints": {
+    "GET /health": {
+      "method": "GET",
+      "path_template": "/health",
+      "status_groups": {
+        "200": {
+          "response_count": 1,
+          "json_response_count": 1,
+          "fields": {
+            "": {
+              "present_count": 1,
+              "parent_count": 1,
+              "presence_rate": 1.0,
+              "types": [
+                "object"
+              ],
+              "type_counts": {
+                "object": 1
+              },
+              "nullable": false,
+              "enum_candidates": [],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 1,
+              "arrays_observed": 0,
+              "items_observed": 0
+            },
+            "status": {
+              "present_count": 1,
+              "parent_count": 1,
+              "presence_rate": 1.0,
+              "types": [
+                "string"
+              ],
+              "type_counts": {
+                "string": 1
+              },
+              "nullable": false,
+              "enum_candidates": [
+                "ok"
+              ],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 0,
+              "arrays_observed": 0,
+              "items_observed": 0
+            }
+          }
+        }
+      }
+    },
+    "GET /products/{id}": {
+      "method": "GET",
+      "path_template": "/products/{id}",
+      "status_groups": {
+        "200": {
+          "response_count": 3,
+          "json_response_count": 3,
+          "fields": {
+            "": {
+              "present_count": 3,
+              "parent_count": 3,
+              "presence_rate": 1.0,
+              "types": [
+                "object"
+              ],
+              "type_counts": {
+                "object": 3
+              },
+              "nullable": false,
+              "enum_candidates": [],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 5,
+              "arrays_observed": 0,
+              "items_observed": 0
+            },
+            "currency": {
+              "present_count": 3,
+              "parent_count": 3,
+              "presence_rate": 1.0,
+              "types": [
+                "string"
+              ],
+              "type_counts": {
+                "string": 3
+              },
+              "nullable": false,
+              "enum_candidates": [
+                "EUR",
+                "USD"
+              ],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 0,
+              "arrays_observed": 0,
+              "items_observed": 0
+            },
+            "id": {
+              "present_count": 3,
+              "parent_count": 3,
+              "presence_rate": 1.0,
+              "types": [
+                "integer"
+              ],
+              "type_counts": {
+                "integer": 3
+              },
+              "nullable": false,
+              "enum_candidates": [
+                1,
+                2,
+                3
+              ],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 0,
+              "arrays_observed": 0,
+              "items_observed": 0
+            },
+            "name": {
+              "present_count": 3,
+              "parent_count": 3,
+              "presence_rate": 1.0,
+              "types": [
+                "string"
+              ],
+              "type_counts": {
+                "string": 3
+              },
+              "nullable": false,
+              "enum_candidates": [
+                "Gadget",
+                "Sprocket",
+                "Widget"
+              ],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 0,
+              "arrays_observed": 0,
+              "items_observed": 0
+            },
+            "price": {
+              "present_count": 3,
+              "parent_count": 3,
+              "presence_rate": 1.0,
+              "types": [
+                "number"
+              ],
+              "type_counts": {
+                "number": 3
+              },
+              "nullable": false,
+              "enum_candidates": [
+                19.5,
+                4.25,
+                9.99
+              ],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": false,
+              "map_keys_open": false,
+              "map_key_count": 0,
+              "arrays_observed": 0,
+              "items_observed": 0
+            },
+            "stock": {
+              "present_count": 3,
+              "parent_count": 3,
+              "presence_rate": 1.0,
+              "types": [
+                "integer"
+              ],
+              "type_counts": {
+                "integer": 3
+              },
+              "nullable": false,
+              "enum_candidates": [
+                0,
+                12,
+                7
+              ],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 0,
+              "arrays_observed": 0,
+              "items_observed": 0
+            }
+          }
+        },
+        "4xx": {
+          "response_count": 1,
+          "json_response_count": 1,
+          "fields": {
+            "": {
+              "present_count": 1,
+              "parent_count": 1,
+              "presence_rate": 1.0,
+              "types": [
+                "object"
+              ],
+              "type_counts": {
+                "object": 1
+              },
+              "nullable": false,
+              "enum_candidates": [],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 1,
+              "arrays_observed": 0,
+              "items_observed": 0
+            },
+            "error": {
+              "present_count": 1,
+              "parent_count": 1,
+              "presence_rate": 1.0,
+              "types": [
+                "string"
+              ],
+              "type_counts": {
+                "string": 1
+              },
+              "nullable": false,
+              "enum_candidates": [
+                "not found"
+              ],
+              "enum_open": false,
+              "format_hints": [],
+              "all_integral": true,
+              "map_keys_open": false,
+              "map_key_count": 0,
+              "arrays_observed": 0,
+              "items_observed": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

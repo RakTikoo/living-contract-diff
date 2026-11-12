@@ -1,0 +1,8 @@
+Living Contract Diff
+====================
+Endpoint sample sizes (JSON responses per status):
+  GET /health  200: 1
+  GET /products/{id}  200: 3
+[WARNING] REQUIRED_MISSING  GET /products/{id}  field=sku
+    evidence: {'present_count': 0, 'parent_count': 3, 'presence_rate': 0.0, 'threshold': 0.99, 'status': '200', 'note': 'never observed in 3 parent instance(s)', 'low_sample': True, 'sample_size': 3}
+Summary: 1 finding(s), 0 breaking, 1 warning

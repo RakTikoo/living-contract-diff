@@ -1,0 +1,35 @@
+{
+  "tool": "living-contract-diff",
+  "findings": [
+    {
+      "code": "REQUIRED_MISSING",
+      "severity": "warning",
+      "endpoint": "GET /products/{id}",
+      "field": "sku",
+      "evidence": {
+        "present_count": 0,
+        "parent_count": 3,
+        "presence_rate": 0.0,
+        "threshold": 0.99,
+        "status": "200",
+        "note": "never observed in 3 parent instance(s)",
+        "low_sample": true,
+        "sample_size": 3
+      }
+    }
+  ],
+  "not_observed": [],
+  "endpoint_samples": {
+    "GET /health": {
+      "200": 1
+    },
+    "GET /products/{id}": {
+      "200": 3
+    }
+  },
+  "summary": {
+    "total": 1,
+    "breaking": 0,
+    "warning": 1
+  }
+}
