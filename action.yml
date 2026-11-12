@@ -1,0 +1,34 @@
+name: "Living Contract Diff"
+description: "Diff a statistics-only observed-contract baseline (from HAR traffic) against an OpenAPI 3.x spec (JSON or YAML); fails on breaking drift."
+inputs:
+  baseline:
+    description: "Path to the committed baseline JSON (relative to the consumer workspace)"
+    required: true
+  spec:
+    description: "Path to the OpenAPI 3.x spec (JSON or YAML; relative to the consumer workspace)"
+    required: true
+  python-version:
+    description: "Python version to use"
+    required: false
+    default: "3.12"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Run contract diff
+      shell: bash
+      # D3 fix: the lcdiff package lives in the ACTION's checkout, while the
+      # baseline/spec inputs are relative to the CONSUMER workspace (the
+      # step's working directory). Put the action path on PYTHONPATH and do
+      # NOT cd anywhere, so consumer-relative input paths keep resolving.
+      env:
+        PYTHONPATH: ${{ github.action_path }}
+      run: |
+        set +e
+        python3 -m lcdiff diff --baseline "${{ inputs.baseline }}" \
+          --spec "${{ inputs.spec }}" --format text | tee /tmp/lcd-report.txt
+        code=${PIPESTATUS[0]}
+        { echo "## Living Contract Diff"; echo '```'; cat /tmp/lcd-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+        exit $code
