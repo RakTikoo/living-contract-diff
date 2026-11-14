@@ -2,6 +2,8 @@
 
 **Learn what your API actually returns from recorded traffic, then diff that observed contract against your OpenAPI spec to report drift.**
 
+![Living Contract Diff terminal demo](living-contract-diff.gif)
+
 APIs drift: the spec says one thing, the server does another, and nobody notices until a client breaks. Living Contract Diff records a compact, statistics-only baseline from a HAR file and compares it with your declared OpenAPI 3.x contract.
 
 - Python standard library only. No dependencies, no LLM, deterministic.
