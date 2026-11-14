@@ -10,6 +10,30 @@ APIs drift: the spec says one thing, the server does another, and nobody notices
 - Static analysis only — nothing from a HAR or a spec is ever executed.
 - Baseline format is **version 2** (2xx responses grouped by exact status code). Version 1 baselines are rejected at load with an explicit "regenerate with `lcdiff observe`" message — never silently misread.
 
+## See it work
+
+```bash
+python3 -m lcdiff observe --har traffic.har --out baseline.json
+python3 -m lcdiff diff --baseline baseline.json --spec openapi.json
+```
+
+Real output (from the worked example in `examples/real_world/` — the
+spec declares a `sku` field that the recorded traffic never returns):
+
+```
+Living Contract Diff
+====================
+Endpoint sample sizes (JSON responses per status):
+  GET /health  200: 1
+  GET /products/{id}  200: 3
+[WARNING] REQUIRED_MISSING  GET /products/{id}  field=sku
+
+Summary: 1 finding(s), 0 breaking, 1 warning
+```
+
+The baseline stores statistics only — never payload values. How that
+works, and its honest limits, are the Privacy section directly below.
+
 ## Privacy — read this honestly
 
 The baseline stores **statistics only**: per-field presence counts and rates, observed type unions with counts, nullability, string format *classes* (date / date-time / uuid / email), and — the one exception below — enum candidate values.
