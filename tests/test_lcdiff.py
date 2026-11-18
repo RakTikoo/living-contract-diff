@@ -79,6 +79,20 @@ class PlantedFaults(unittest.TestCase):
         findings, _ = findings_for("fault_undocumented_array")
         self.assertEqual(codes(findings), [("UNDOCUMENTED_FIELD", "items[].discount")])
 
+    def test_undocumented_status(self):
+        name = "fault_status_undocumented"
+        docs = openapi.spec_endpoints(openapi.load_spec(os.path.join(FX, name + ".openapi.json")))
+        report = diff_mod.diff_report(baseline_for(name), docs)
+        self.assertEqual(codes(report["findings"]), [("UNDOCUMENTED_FIELD", "job_id")])
+        finding = report["findings"][0]
+        self.assertEqual(finding["endpoint"], "POST /jobs")
+        self.assertEqual(finding["severity"], "warning")
+        self.assertEqual(finding["evidence"]["status"], "201")
+        self.assertEqual(report["endpoint_samples"], {"POST /jobs": {"201": 1}})
+        self.assertEqual(
+            [(item["endpoint"], item["status"]) for item in report["not_observed"]],
+            [("POST /jobs", "200")])
+
     def test_type_mismatch_top_level(self):
         findings, _ = findings_for("fault_type_top")
         self.assertEqual(codes(findings), [("TYPE_MISMATCH", "id")])
