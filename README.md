@@ -22,6 +22,12 @@ pip install git+https://github.com/RakTikoo/living-contract-diff
 pipx install git+https://github.com/RakTikoo/living-contract-diff
 ```
 
+With uv:
+
+```bash
+uv tool install git+https://github.com/RakTikoo/living-contract-diff
+```
+
 That gives you the `lcdiff` command. `python3 -m lcdiff` does exactly the same thing, and running from a clone works too — no build step, it is pure stdlib Python (3.9+).
 
 ## See it work
