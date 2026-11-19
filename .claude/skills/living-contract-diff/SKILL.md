@@ -22,6 +22,14 @@ from a HAR or a spec is ever executed.
 
 ```bash
 pip install git+https://github.com/RakTikoo/living-contract-diff
+# or, isolated, with pipx:
+pipx install git+https://github.com/RakTikoo/living-contract-diff
+```
+
+With uv:
+
+```bash
+uv tool install git+https://github.com/RakTikoo/living-contract-diff
 ```
 
 This provides the `lcdiff` command (standard library only).
@@ -38,11 +46,37 @@ lcdiff diff --baseline baseline.json --spec openapi.json
 Machine-readable report: add `--format json` to `diff`. The spec may
 be YAML (`.yaml`/`.yml`) instead of JSON. `lcdiff diff-baseline --old
 old.json --new new.json` compares two baselines with the same codes.
+Reports go to stdout unless `--out FILE` is given (both diff modes).
+
+No HAR? `lcdiff observe --samples-dir samples/ --manifest
+manifest.json --out baseline.json` builds a baseline from a directory
+of `.json` response samples plus an endpoint manifest JSON instead
+(`--samples-dir` requires `--manifest`).
+
+`diff` options: `--required-threshold 0.95` sets the presence rate
+below which a required field is `REQUIRED_MISSING` (default 0.99;
+0 < x ≤ 1). `--ignore-endpoint 'GET /health'` excludes endpoints
+matching a glob (repeatable; matched against `METHOD /path` and the
+path template).
+
+Accepted drift: `lcdiff accept --report report.json --reason "…"
+--out ledger.json` records every active finding of a JSON diff report
+as accepted drift in a ledger, with the reason (`--reason` is
+required and must not be empty; `--ledger existing.json` extends an
+existing ledger, keeping the original reasons). Passing `--ledger
+ledger.json` to `diff` or `diff-baseline` reports findings whose
+(endpoint, code, field) identity is in the ledger as accepted — they
+are printed in their own section, listed under `accepted` in the JSON
+report, and never affect the exit code.
 
 ## Reading the results
 
 Finding codes: `REQUIRED_MISSING` and `TYPE_MISMATCH` are breaking;
-`UNDOCUMENTED_FIELD` and `ENUM_GROWTH` are warnings. Every finding
+`UNDOCUMENTED_FIELD` and `ENUM_GROWTH` are warnings. Two documented
+downgrades: a required field whose parent array was observed but
+always empty is reported as a warning (unverifiable-because-empty),
+and a type mismatch seen once in 20 or more observations is
+downgraded to a warning with the count in the evidence. Every finding
 names the endpoint, the field, and the evidence counts. Endpoints or
 statuses in the spec with no observed traffic are listed as
 `not_observed` — reported, never turned into findings.
@@ -60,8 +94,10 @@ The JSON report carries `findings`, `not_observed`,
 
 ## Limits
 
-- HAR is the only traffic source in this version — no live proxy or
-  traffic interception, no request-body inference, no GraphQL/gRPC.
+- Traffic comes only from files you supply — a HAR file, or a
+  directory of `.json` response samples with an endpoint manifest.
+  No live proxy or traffic interception, no request-body inference,
+  no GraphQL/gRPC.
 - Privacy is heuristic, not a guarantee: a short secret in a
   low-cardinality, innocuously named field *will* be stored as an enum
   candidate. Treat baselines as internal artefacts when traffic may
