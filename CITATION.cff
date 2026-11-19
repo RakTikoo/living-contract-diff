@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - name: RakTikoo
+title: "living-contract-diff: check your OpenAPI spec against what your API actually returns"
+version: 0.3
+date-released: 2026-11-14
+license: MIT
+url: "https://github.com/RakTikoo/living-contract-diff"
+repository-code: "https://github.com/RakTikoo/living-contract-diff"
+abstract: >-
+  Learns what an API actually returns from recorded traffic (a HAR file or a
+  folder of JSON samples), builds a statistics-only observed contract, and
+  diffs it against the declared OpenAPI 3.x spec to report drift. Static
+  analysis only; nothing is executed.
+keywords:
+  - OpenAPI
+  - API
+  - contract testing
+  - HAR
+  - drift

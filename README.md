@@ -1,5 +1,7 @@
 # Living Contract Diff — check your OpenAPI spec against what your API actually returns
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/RakTikoo/living-contract-diff)
+
 [![Tests](https://github.com/RakTikoo/living-contract-diff/actions/workflows/tests.yml/badge.svg)](https://github.com/RakTikoo/living-contract-diff/actions/workflows/tests.yml)
 
 **Learn what your API actually returns from recorded traffic, then diff that observed contract against your OpenAPI spec to report drift.**
@@ -29,6 +31,8 @@ uv tool install git+https://github.com/RakTikoo/living-contract-diff
 ```
 
 That gives you the `lcdiff` command. `python3 -m lcdiff` does exactly the same thing, and running from a clone works too — no build step, it is pure stdlib Python (3.9+).
+
+**For agent users:** this repository ships a `SKILL.md` for AI agents. Install it with `npx skills add RakTikoo/living-contract-diff`.
 
 ## See it work
 
