@@ -1,4 +1,4 @@
-# Living Contract Diff
+# Living Contract Diff — check your OpenAPI spec against what your API actually returns
 
 [![Tests](https://github.com/RakTikoo/living-contract-diff/actions/workflows/tests.yml/badge.svg)](https://github.com/RakTikoo/living-contract-diff/actions/workflows/tests.yml)
 
