@@ -204,6 +204,16 @@ Summary: 1 finding(s), 0 breaking, 1 warning
 
 Robustness: empty bodies, 204s and non-JSON bodies are skipped without crashing; undecodable/invalid bodies *for JSON content types* are an explicit INCOMPLETE error, not a silent skip; huge payloads, unicode and deeply nested JSON (recursion is depth-capped, and recursive `$ref`s — including branching ones — resolve via an ancestry placeholder) are handled; truncated JSON is an explicit error (exit 2). Text reports escape control characters in names, so a hostile field name cannot forge report lines.
 
+## Use with an AI agent
+
+This repo ships a [SKILL.md](SKILL.md) written to the Agent Skills open
+standard. If your coding agent supports skills, point it at this repo and
+it can install Living Contract Diff, build a baseline from your recorded
+traffic, diff it against your OpenAPI spec, and read the drift report for
+you. The skill works as promised when the repo is cloned under its real
+name (`living-contract-diff`) — the standard ties the skill's name to its
+folder.
+
 ## Limitations
 
 - **⚠ Sparse fieldsets (`?fields=`):** if your API returns different field subsets depending on a query parameter (e.g. `?fields=id,name`), a HAR mixes those subsets into one endpoint and presence rates are meaningless blends. **This cannot be detected from a HAR** — request query strings are not part of the observed contract. Record separate captures per fieldset if you use them.
