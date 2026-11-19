@@ -2,7 +2,7 @@
 name: living-contract-diff
 description: Detect drift between what an API actually returns and what its OpenAPI spec promises. Builds a statistics-only baseline from recorded traffic (a HAR file), then diffs it against an OpenAPI 3.x spec (JSON or YAML) to report required fields the API never sends, type mismatches, undocumented fields and enum growth. Use when asked to check API contract drift, compare a spec against real responses, audit an OpenAPI spec against recorded traffic, or gate API changes in CI. Not for generating an OpenAPI spec from scratch, for live API monitoring, or for testing API behaviour — this tool compares recorded traffic against an existing spec.
 license: MIT
-compatibility: Requires Python 3.9+ and pip. Fully offline; traffic comes from a HAR file you supply — there is no live proxy.
+compatibility: Requires Python 3.9+ and pip. Fully offline; traffic comes from files you supply — a HAR file or a folder of JSON samples — there is no live proxy.
 ---
 
 # Living Contract Diff
