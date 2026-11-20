@@ -1,5 +1,5 @@
 """Living Contract Diff — learn what an API actually returns, diff vs OpenAPI."""
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 # Baseline format v2: 2xx responses are grouped by EXACT status code
 # ("200", "201", ...) instead of a single merged "2xx" group. v1 baselines
 # are rejected at load with an explicit regeneration message.

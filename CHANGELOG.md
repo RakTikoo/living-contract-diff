@@ -4,7 +4,7 @@ All notable changes to Living Contract Diff, newest first. Versions are
 tagged on GitHub (`v0.2`, …) and consumers pin them as
 `uses: RakTikoo/living-contract-diff@v0.2`.
 
-## Unreleased
+## v0.3.1 — 2026-11-20
 
 - **Packaging.** A `pyproject.toml` makes the tool pip-installable
   (`pip install git+https://github.com/RakTikoo/living-contract-diff`,
@@ -19,6 +19,14 @@ tagged on GitHub (`v0.2`, …) and consumers pin them as
   pre-commit hook (fails on breaking drift); see the README.
 - **Docs.** README gains an Install section on the first screen, and
   the GitHub Action example now pins `@v0.3`.
+- **Docs.** README test count corrected (239 → 241, as measured by
+  `run_tests.py`); README gains the DeepWiki badge and the
+  `npx skills add` agent-install line; `CITATION.cff` /
+  `codemeta.json` citation metadata added. This release exists so
+  the release tag contains the packaging and docs above — the
+  v0.3 tag predates them. (Version style: the package has always
+  carried the three-part `0.3.0`; the tags used the two-part
+  `v0.3`. This release standardises on the three-part `v0.3.1`.)
 
 ## v0.3 — 2026-11-14
 

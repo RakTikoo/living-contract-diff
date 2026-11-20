@@ -3,8 +3,8 @@ message: "If you use this software, please cite it as below."
 authors:
   - name: RakTikoo
 title: "living-contract-diff: check your OpenAPI spec against what your API actually returns"
-version: 0.3
-date-released: 2026-11-14
+version: 0.3.1
+date-released: 2026-11-20
 license: MIT
 url: "https://github.com/RakTikoo/living-contract-diff"
 repository-code: "https://github.com/RakTikoo/living-contract-diff"

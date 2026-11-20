@@ -249,7 +249,7 @@ python3 run_tests.py        # or: python3 -m unittest discover -s tests
 `action.yml` in this repo is a composite action that runs the diff in CI mode against a committed baseline + spec and appends the report to the job summary. It puts the action's own checkout on `PYTHONPATH` (via `github.action_path`) so the `lcdiff` package resolves, while your `baseline`/`spec` inputs stay relative to *your* workspace. Using it from another repo (once published):
 
 ```yaml
-- uses: RakTikoo/living-contract-diff@v0.3
+- uses: RakTikoo/living-contract-diff@v0.3.1
   with:
     baseline: contract/baseline.json
     spec: openapi.json
